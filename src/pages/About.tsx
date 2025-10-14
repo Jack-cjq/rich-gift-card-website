@@ -33,7 +33,7 @@ const About: React.FC = () => {
                 <div className="relative">
                   <div className="w-full h-96 bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-cyan-400/30 rounded-2xl backdrop-blur-sm overflow-hidden">
                     <img 
-                      src="/src/images/About-img1.png" 
+                      src="/images/About-img1.png" 
                       alt="Professional Team" 
                       className="w-full h-full object-cover rounded-2xl"
                     />

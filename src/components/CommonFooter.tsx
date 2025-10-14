@@ -78,7 +78,7 @@ const CommonFooter: React.FC = () => {
               <div className="text-center">
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <img 
-                    src="/src/images/Rich-logo.png" 
+                    src="/images/Rich-logo.png" 
                     alt="Rich Logo" 
                     className="w-8 h-8 object-contain"
                   />
@@ -100,7 +100,7 @@ const CommonFooter: React.FC = () => {
                 </div>
                 <div className="flex-shrink-0">
                   <img 
-                    src="/src/images/Rich-logo.png" 
+                    src="/images/Rich-logo.png" 
                     alt="Rich Logo" 
                     className="w-16 h-16 object-contain"
                   />

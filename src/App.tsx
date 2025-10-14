@@ -65,7 +65,7 @@ const Navigation: React.FC = () => {
       <div className="w-full px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
           <img 
-            src="/src/images/Rich-logo.png" 
+            src="/images/Rich-logo.png" 
             alt="Rich Logo" 
             className="w-8 h-8 object-contain"
           />
@@ -396,11 +396,11 @@ const HomePage: React.FC = () => {
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/25 text-lg font-semibold flex items-center gap-3 hover:from-blue-700 hover:to-purple-700 hover:shadow-blue-500/40 hover:scale-105 active:scale-95 transition-all duration-200">
-              <img src="/src/images/apple.png" alt="Apple" className="w-6 h-6" />
+              <img src="/images/apple.png" alt="Apple" className="w-6 h-6" />
               Get on iOS
             </button>
             <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/25 text-lg font-semibold flex items-center gap-3 hover:from-cyan-600 hover:to-blue-600 hover:shadow-cyan-500/40 hover:scale-105 active:scale-95 transition-all duration-200">
-              <img src="/src/images/android.png" alt="Android" className="w-6 h-6" />
+              <img src="/images/android.png" alt="Android" className="w-6 h-6" />
               Get on Android
             </button>
             <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-lg shadow-purple-500/25 text-lg font-semibold flex items-center gap-3 hover:from-purple-600 hover:to-indigo-600 hover:shadow-purple-500/40 hover:scale-105 active:scale-95 transition-all duration-200">
@@ -1102,7 +1102,7 @@ const HomePage: React.FC = () => {
                     height="10" 
                     decoding="async" 
                     className="object-contain mr-2" 
-                    src="/src/images/apple.png" 
+                    src="/images/apple.png" 
                     style={{ color: 'transparent' }}
                   />
                   Get on iOS
@@ -1115,7 +1115,7 @@ const HomePage: React.FC = () => {
                     height="10" 
                     decoding="async" 
                     className="object-contain mr-2" 
-                    src="/src/images/android.png" 
+                    src="/images/android.png" 
                     style={{ color: 'transparent' }}
                   />
                   Get on Android

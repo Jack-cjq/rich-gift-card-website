@@ -204,19 +204,19 @@ const About: React.FC = () => {
                   title: "Rich's Team", 
                   subtitle: "Transaction Team", 
                   description: "busy day at the office",
-                  image: "/src/images/About-img2.png"
+                  image: "/images/About-img2.png"
                 },
                 { 
                   title: "Rich's Team", 
                   subtitle: "Transaction Team", 
                   description: "We are always available",
-                  image: "/src/images/About-img3.png"
+                  image: "/images/About-img3.png"
                 },
                 { 
                   title: "Rich's Team", 
                   subtitle: "Transaction Team", 
                   description: "Trade With The Best",
-                  image: "/src/images/About-img4.png"
+                  image: "/images/About-img4.png"
                 }
               ].map((team, i) => (
                 <div key={i} className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-cyan-400/30 rounded-2xl p-6 backdrop-blur-sm">

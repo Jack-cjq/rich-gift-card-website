@@ -92,7 +92,10 @@ const Navigation: React.FC = () => {
           <button className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-blue-700 to-purple-700 text-white font-semibold hover:from-blue-800 hover:to-purple-800 transition-all duration-200 shadow-lg shadow-blue-500/25">
             Login
           </button>
-          <button className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold hover:from-cyan-500 hover:to-blue-600 transition-all duration-200 shadow-lg shadow-cyan-500/25">
+          <button 
+            onClick={() => window.open('https://wa.me/8619371138377?text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21', '_blank')}
+            className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold hover:from-cyan-500 hover:to-blue-600 transition-all duration-200 shadow-lg shadow-cyan-500/25"
+          >
             Get started
           </button>
         </div>
@@ -410,7 +413,7 @@ const HomePage: React.FC = () => {
               Trade on web
             </button>
             <button 
-              onClick={() => window.open('https://wa.me/8615971204890?text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21', '_blank')}
+              onClick={() => window.open('https://wa.me/8619371138377?text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21', '_blank')}
               className="px-6 py-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-blue-600 text-white shadow-lg shadow-indigo-500/25 text-lg font-semibold hover:from-indigo-600 hover:to-blue-700 hover:shadow-indigo-500/40 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-3"
             >
               <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -527,9 +530,12 @@ const HomePage: React.FC = () => {
               Convert gift cards and crypto to cash instantly—fast, secure, and hassle-free!
             </p>
             <div className="mb-6">
-              <button className="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-xl hover:from-cyan-600 hover:to-blue-600 transition-all duration-200">
+              <button 
+                onClick={() => window.open('https://wa.me/8619371138377?text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21', '_blank')}
+                className="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-xl hover:from-cyan-600 hover:to-blue-600 transition-all duration-200"
+              >
                 Trade Now →
-        </button>
+              </button>
             </div>
             <div className="space-y-3 max-h-[300px] overflow-auto pr-1">
               {[

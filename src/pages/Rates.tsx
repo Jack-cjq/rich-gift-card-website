@@ -191,7 +191,10 @@ const Rates: React.FC = () => {
               </div>
 
               {/* Get Started Button */}
-              <button className="w-full py-4 bg-cyan-500 text-white font-semibold rounded-lg hover:bg-cyan-600 transition-colors mb-4">
+              <button 
+                onClick={() => window.open('https://wa.me/8619371138377?text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21', '_blank')}
+                className="w-full py-4 bg-cyan-500 text-white font-semibold rounded-lg hover:bg-cyan-600 transition-colors mb-4"
+              >
                 Get Started
               </button>
 

@@ -109,7 +109,10 @@ const Rewards: React.FC = () => {
                   <p className="text-white/90 text-sm leading-relaxed mb-6">
                     Get started with Rich today and start unlocking the amazing benefits that await you. Happy trading!
                   </p>
-                  <button className="w-full py-3 bg-white text-gray-800 font-semibold rounded-lg hover:bg-gray-100 transition-colors">
+                  <button 
+                    onClick={() => window.open('https://wa.me/8619371138377?text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21', '_blank')}
+                    className="w-full py-3 bg-white text-gray-800 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+                  >
                     Trade Now
                   </button>
                 </div>

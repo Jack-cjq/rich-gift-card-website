@@ -192,7 +192,7 @@ const Rates: React.FC = () => {
 
               {/* Get Started Button */}
               <button 
-                onClick={() => window.open('https://wa.me/8619371138377?text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019371138377', '_blank')}
+                onClick={() => window.open('https://api.whatsapp.com/send?phone=8619371138377&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019371138377', '_blank')}
                 className="w-full py-4 bg-cyan-500 text-white font-semibold rounded-lg hover:bg-cyan-600 transition-colors mb-4"
               >
                 Get Started

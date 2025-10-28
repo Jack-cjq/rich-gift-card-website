@@ -421,6 +421,15 @@ const HomePage: React.FC = () => {
               </svg>
               Trade on WhatsApp
             </button>
+            <button 
+              onClick={() => window.open('https://www.tiktok.com/@miss.rich77', '_blank')}
+              className="px-6 py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-red-500 text-white shadow-lg shadow-pink-500/25 text-lg font-semibold hover:from-pink-600 hover:to-red-600 hover:shadow-pink-500/40 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-3"
+            >
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"></path>
+              </svg>
+              Follow on TikTok
+            </button>
           </div>
 
           {/* brand ticker */}

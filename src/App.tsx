@@ -118,6 +118,9 @@ const HomePage: React.FC = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [mediaScrollPosition, setMediaScrollPosition] = useState(0);
   const mediaAutoplayIntervalRef = useRef<number | null>(null);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
+  const [isVideoMuted, setIsVideoMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Testimonial continuous smooth scrolling effect
   useEffect(() => {
@@ -157,7 +160,7 @@ const HomePage: React.FC = () => {
         }
       };
     }
-  }, []);
+  }, [isTestimonialHovered]);
 
   // Handle hover state changes
   useEffect(() => {
@@ -185,7 +188,7 @@ const HomePage: React.FC = () => {
         }, 16);
       }
     }
-  }, [isTestimonialHovered]);
+  }, [isTestimonialHovered, testimonialCarouselRef]);
 
   // Media carousel continuous smooth scrolling effect
   useEffect(() => {
@@ -362,8 +365,99 @@ const HomePage: React.FC = () => {
   return (
     <main ref={rootRef} className="min-h-screen w-full bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900 text-white">
        {/* Hero */}
-       <section id="hero" ref={(el) => { sectionsRef.current[0] = el; }} className="relative min-h-screen">
+       <section id="hero" ref={(el) => { sectionsRef.current[0] = el; }} className="relative min-h-screen overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 -z-20">
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover md:object-cover object-center"
+            autoPlay
+            muted={isVideoMuted}
+            loop
+            playsInline
+            preload="metadata"
+            onPlay={() => setIsVideoPlaying(true)}
+            onPause={() => setIsVideoPlaying(false)}
+            onError={(e) => {
+              console.warn('Video failed to load, falling back to gradient background');
+              // Hide video on error and show fallback
+              const videoElement = e.target as HTMLVideoElement;
+              videoElement.style.display = 'none';
+            }}
+          >
+            <source src="/videos/v1.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          {/* Video overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-purple-900/60 to-indigo-900/70"></div>
+        </div>
+        
+        {/* Original gradient overlay for additional depth */}
         <div id="heroGlow" className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(34,211,238,0.1)_0%,rgba(147,51,234,0.2)_50%,rgba(34,211,238,0.1)_100%)] bg-[length:200%_100%]"></div>
+
+        {/* Controls layer above all backgrounds */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Play/Pause */}
+          <button
+            onClick={() => {
+              if (videoRef.current) {
+                if (isVideoPlaying) {
+                  videoRef.current.pause();
+                } else {
+                  videoRef.current.play();
+                }
+              }
+            }}
+            className="hidden md:flex pointer-events-auto absolute top-4 right-4 z-40 w-12 h-12 bg-black/60 backdrop-blur-sm rounded-full items-center justify-center text-white hover:bg-black/80 transition-all duration-200 border border-white/20"
+            aria-label={isVideoPlaying ? "Pause video" : "Play video"}
+            type="button"
+          >
+            {isVideoPlaying ? (
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+              </svg>
+            ) : (
+              <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            )}
+          </button>
+
+          {/* Mute/Unmute */}
+          <button
+            onClick={async (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (!videoRef.current) return;
+              try {
+                if (isVideoMuted) {
+                  videoRef.current.muted = false;
+                  videoRef.current.volume = 0.35;
+                  await videoRef.current.play();
+                  setIsVideoMuted(false);
+                } else {
+                  videoRef.current.muted = true;
+                  setIsVideoMuted(true);
+                }
+              } catch (err) {
+                console.warn('Autoplay with sound was blocked. User gesture required.', err);
+              }
+            }}
+            className="pointer-events-auto absolute top-20 left-4 z-40 w-16 h-16 bg-red-500 hover:bg-red-600 active:bg-red-700 rounded-full flex items-center justify-center text-white transition-all duration-200 border-4 border-white shadow-2xl"
+            aria-label={isVideoMuted ? "Unmute video" : "Mute video"}
+            type="button"
+          >
+            {isVideoMuted ? (
+              <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M3 10v4h4l5 5V5L7 10H3zm13.59 2l2.7 2.7-1.41 1.41L15.17 13l-2.71-2.71 1.41-1.41L17.59 11l2.7-2.7 1.41 1.41L19 12z"/>
+              </svg>
+            ) : (
+              <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M3 10v4h4l5 5V5L7 10H3zm10.5 2a4.5 4.5 0 00-2.5-4.06v8.12A4.5 4.5 0 0013.5 12zm0-8a8.5 8.5 0 010 16v-2a6.5 6.5 0 000-12v-2z"/>
+              </svg>
+            )}
+          </button>
+        </div>
         
         {/* Rectangular Orbiting Country Flags */}
         <div className="absolute inset-0 pointer-events-none flex items-center justify-center pt-24">
@@ -389,24 +483,24 @@ const HomePage: React.FC = () => {
         </div>
         
         <div className="w-full px-6 py-24 md:py-32 text-center relative z-10 flex flex-col justify-center min-h-screen">
-          <div className="text-7xl md:text-8xl lg:text-9xl font-bold leading-[0.9] bg-gradient-to-r from-yellow-300 via-pink-400 to-purple-500 bg-clip-text text-transparent py-16">
+          <div className="text-7xl md:text-8xl lg:text-9xl font-bold leading-[0.9] bg-gradient-to-r from-yellow-300 via-pink-400 to-purple-500 bg-clip-text text-transparent py-16 drop-shadow-2xl">
             The Evolution<br />
             of Gift Card<br />
             Trading
           </div>
-          <p className="mt-6 text-lg md:text-xl text-blue-200">
+          <p className="mt-6 text-lg md:text-xl text-blue-200 drop-shadow-lg bg-black/20 backdrop-blur-sm px-4 py-2 rounded-lg inline-block">
             Experience fast, secure, and reliable gift card and crypto trading at its best.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/25 text-lg font-semibold flex items-center gap-3 hover:from-blue-700 hover:to-purple-700 hover:shadow-blue-500/40 hover:scale-105 active:scale-95 transition-all duration-200">
+            <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl shadow-blue-500/50 text-lg font-semibold flex items-center gap-3 hover:from-blue-700 hover:to-purple-700 hover:shadow-blue-500/60 hover:scale-105 active:scale-95 transition-all duration-200 backdrop-blur-sm border border-white/20">
               <img src="/images/apple.png" alt="Apple" className="w-6 h-6" />
               Get on iOS
             </button>
-            <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/25 text-lg font-semibold flex items-center gap-3 hover:from-cyan-600 hover:to-blue-600 hover:shadow-cyan-500/40 hover:scale-105 active:scale-95 transition-all duration-200">
+            <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-2xl shadow-cyan-500/50 text-lg font-semibold flex items-center gap-3 hover:from-cyan-600 hover:to-blue-600 hover:shadow-cyan-500/60 hover:scale-105 active:scale-95 transition-all duration-200 backdrop-blur-sm border border-white/20">
               <img src="/images/android.png" alt="Android" className="w-6 h-6" />
               Get on Android
             </button>
-            <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-lg shadow-purple-500/25 text-lg font-semibold flex items-center gap-3 hover:from-purple-600 hover:to-indigo-600 hover:shadow-purple-500/40 hover:scale-105 active:scale-95 transition-all duration-200">
+            <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-2xl shadow-purple-500/50 text-lg font-semibold flex items-center gap-3 hover:from-purple-600 hover:to-indigo-600 hover:shadow-purple-500/60 hover:scale-105 active:scale-95 transition-all duration-200 backdrop-blur-sm border border-white/20">
               <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 496 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                 <path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"></path>
               </svg>
@@ -414,7 +508,7 @@ const HomePage: React.FC = () => {
             </button>
             <button 
               onClick={() => window.open('https://api.whatsapp.com/send?phone=8619371138377&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019371138377', '_blank')}
-              className="px-6 py-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-blue-600 text-white shadow-lg shadow-indigo-500/25 text-lg font-semibold hover:from-indigo-600 hover:to-blue-700 hover:shadow-indigo-500/40 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-3"
+              className="px-6 py-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-blue-600 text-white shadow-2xl shadow-indigo-500/50 text-lg font-semibold hover:from-indigo-600 hover:to-blue-700 hover:shadow-indigo-500/60 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-3 backdrop-blur-sm border border-white/20"
             >
               <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                 <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path>
@@ -423,7 +517,7 @@ const HomePage: React.FC = () => {
             </button>
             <button 
               onClick={() => window.open('https://www.tiktok.com/@miss.rich77', '_blank')}
-              className="px-6 py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-red-500 text-white shadow-lg shadow-pink-500/25 text-lg font-semibold hover:from-pink-600 hover:to-red-600 hover:shadow-pink-500/40 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-3"
+              className="px-6 py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-red-500 text-white shadow-2xl shadow-pink-500/50 text-lg font-semibold hover:from-pink-600 hover:to-red-600 hover:shadow-pink-500/60 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-3 backdrop-blur-sm border border-white/20"
             >
               <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"></path>
@@ -1138,132 +1232,17 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             <div className="md:w-1/2 flex items-center justify-center relative z-10">
-              <div className="w-full max-w-sm bg-white rounded-3xl p-6 shadow-2xl border border-gray-200">
-                {/* App Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center">
-                      <div className="w-4 h-4 border border-cyan-200 flex flex-col gap-0.5">
-                        <div className="w-full h-0.5 bg-cyan-200"></div>
-                        <div className="w-full h-0.5 bg-cyan-200"></div>
-                        <div className="w-full h-0.5 bg-cyan-200"></div>
-                      </div>
-                    </div>
-                    <span className="font-bold text-gray-800">Rich</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
-                      <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                    </div>
-                    <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center relative">
-                      <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5v-5zM4.5 19.5a2.5 2.5 0 01-2.5-2.5V6a2.5 2.5 0 012.5-2.5h15A2.5 2.5 0 0122 6v11a2.5 2.5 0 01-2.5 2.5h-15z" />
-                      </svg>
-                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Wallet Balance */}
-                <div className="bg-gradient-to-r from-cyan-400 to-blue-500 rounded-2xl p-6 mb-6">
-                  <div className="text-cyan-100 text-sm mb-2">Wallet Balance</div>
-                  <div className="flex items-center justify-between">
-                    <div className="text-3xl font-bold text-white">₦300,500.00</div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
-                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
-                      </div>
-                      <button className="bg-white/20 text-white px-3 py-1 rounded-full text-sm">Wallet</button>
-                    </div>
-                  </div>
-                  <div className="flex gap-3 mt-4">
-                    <button className="flex-1 bg-white/20 text-white py-2 px-4 rounded-xl flex items-center justify-center gap-2">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                      </svg>
-                      Withdraw
-                    </button>
-                    <button className="flex-1 bg-white/20 text-white py-2 px-4 rounded-xl flex items-center justify-center gap-2">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                      History
-                    </button>
-                  </div>
-                </div>
-
-                {/* Actions */}
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Actions</h3>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-green-100 rounded-xl p-4">
-                      <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center mb-2">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
-                        </svg>
-                      </div>
-                      <div className="text-sm font-semibold text-gray-800">Trade Gift Cards</div>
-                      <div className="text-xs text-gray-600">Redeem your gift cards</div>
-                    </div>
-                    <div className="bg-cyan-100 rounded-xl p-4">
-                      <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center mb-2">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                        </svg>
-                      </div>
-                      <div className="text-sm font-semibold text-gray-800">Sell Crypto</div>
-                      <div className="text-xs text-gray-600">Trade your USDT/BTC</div>
-                    </div>
-                    <div className="bg-yellow-100 rounded-xl p-4">
-                      <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center mb-2">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                        </svg>
-                      </div>
-                      <div className="text-sm font-semibold text-gray-800">Payment Platforms</div>
-                      <div className="text-xs text-gray-600">Swap funds for cash</div>
-                    </div>
-                    <div className="bg-gray-100 rounded-xl p-4">
-                      <div className="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center mb-2">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <div className="text-sm font-semibold text-gray-800">Rates Calculator</div>
-                      <div className="text-xs text-gray-600">Discover gift card values</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Transactions */}
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-lg font-semibold text-gray-800">Transactions</h3>
-                    <button className="text-cyan-500 text-sm">See all</button>
-                  </div>
-                  <div className="bg-gray-50 rounded-xl p-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                          <svg className="w-6 h-6 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                          </svg>
-                        </div>
-                        <div>
-                          <div className="text-sm font-semibold text-gray-800">Amazon Giftcard Sale</div>
-                          <div className="text-xs text-gray-600">Today, 2:30 PM</div>
-                        </div>
-                      </div>
-                      <div className="text-sm font-semibold text-green-600">₦35,500.00</div>
-                    </div>
-                  </div>
-                </div>
+              <div className="w-full max-w-xl rounded-2xl overflow-hidden shadow-2xl border border-cyan-400/30 bg-gradient-to-br from-slate-800/60 to-purple-900/60 backdrop-blur-sm">
+                <video 
+                  className="w-full h-full object-cover"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster=""
+                >
+                  <source src="/videos/v2.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </div>
           </div>

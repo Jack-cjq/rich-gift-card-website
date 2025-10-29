@@ -368,10 +368,10 @@ const HomePage: React.FC = () => {
        <section id="hero" ref={(el) => { sectionsRef.current[0] = el; }} className="relative min-h-screen overflow-hidden">
         {/* Video Background */}
         <div className="absolute inset-0 -z-20">
-          {/* Desktop/Large screens: show video background */}
+          {/* Responsive background video for all devices */}
           <video
             ref={videoRef}
-            className="hidden md:block w-full h-full object-cover object-center"
+            className="block w-full h-full min-w-full min-h-full object-cover object-center"
             autoPlay
             muted={isVideoMuted}
             loop
@@ -390,8 +390,6 @@ const HomePage: React.FC = () => {
             Your browser does not support the video tag.
           </video>
 
-          {/* Mobile: use lightweight static background to improve performance */}
-          <div className="md:hidden absolute inset-0 bg-gradient-to-b from-slate-900/70 via-purple-900/60 to-indigo-900/70"></div>
           {/* Video overlay for better text readability */}
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-purple-900/60 to-indigo-900/70"></div>
         </div>

@@ -122,6 +122,15 @@ const HomePage: React.FC = () => {
   const [isVideoMuted, setIsVideoMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Ensure inline playback on iOS Safari
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.setAttribute('playsinline', 'true');
+      videoRef.current.setAttribute('webkit-playsinline', 'true');
+      videoRef.current.setAttribute('muted', isVideoMuted ? 'true' : 'false');
+    }
+  }, [isVideoMuted]);
+
   // Testimonial continuous smooth scrolling effect
   useEffect(() => {
     if (testimonialCarouselRef.current) {
@@ -386,6 +395,8 @@ const HomePage: React.FC = () => {
               videoElement.style.display = 'none';
             }}
           >
+            {/* Optional mobile-specific source if provided later */}
+            <source media="(max-width: 767px)" srcSet="/videos/v1.mp4" type="video/mp4" />
             <source src="/videos/v1.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>

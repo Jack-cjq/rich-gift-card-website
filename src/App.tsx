@@ -368,9 +368,10 @@ const HomePage: React.FC = () => {
        <section id="hero" ref={(el) => { sectionsRef.current[0] = el; }} className="relative min-h-screen overflow-hidden">
         {/* Video Background */}
         <div className="absolute inset-0 -z-20">
+          {/* Desktop/Large screens: show video background */}
           <video
             ref={videoRef}
-            className="w-full h-full object-cover md:object-cover object-center"
+            className="hidden md:block w-full h-full object-cover object-center"
             autoPlay
             muted={isVideoMuted}
             loop
@@ -388,6 +389,9 @@ const HomePage: React.FC = () => {
             <source src="/videos/v1.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+
+          {/* Mobile: use lightweight static background to improve performance */}
+          <div className="md:hidden absolute inset-0 bg-gradient-to-b from-slate-900/70 via-purple-900/60 to-indigo-900/70"></div>
           {/* Video overlay for better text readability */}
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-purple-900/60 to-indigo-900/70"></div>
         </div>
@@ -443,7 +447,7 @@ const HomePage: React.FC = () => {
                 console.warn('Autoplay with sound was blocked. User gesture required.', err);
               }
             }}
-            className="pointer-events-auto absolute top-20 left-4 z-40 w-16 h-16 bg-red-500 hover:bg-red-600 active:bg-red-700 rounded-full flex items-center justify-center text-white transition-all duration-200 border-4 border-white shadow-2xl"
+            className="hidden md:flex pointer-events-auto absolute top-20 left-4 z-40 w-16 h-16 bg-red-500 hover:bg-red-600 active:bg-red-700 rounded-full items-center justify-center text-white transition-all duration-200 border-4 border-white shadow-2xl"
             aria-label={isVideoMuted ? "Unmute video" : "Mute video"}
             type="button"
           >

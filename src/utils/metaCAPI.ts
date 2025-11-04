@@ -113,5 +113,21 @@ export const MetaEvents = {
       },
     });
   },
+
+  /**
+   * Track form submission - Lead event
+   * 追踪表单提交转化事件
+   */
+  formSubmit: (userData?: MetaEventData['userData'], customData?: MetaEventData['customData']) => {
+    return sendMetaCAPIEvent({
+      eventName: 'Lead',
+      userData,
+      customData: {
+        content_name: 'Contact Form Submission',
+        content_category: 'Lead Generation',
+        ...customData,
+      },
+    });
+  },
 };
 

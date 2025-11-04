@@ -14,6 +14,7 @@ import BlogPost3 from "./pages/BlogPost3";
 import Rates from "./pages/Rates";
 import Rewards from "./pages/Rewards";
 import CommonFooter from "./components/CommonFooter";
+import ContactForm from "./components/ContactForm";
 import { MetaEvents } from "./utils/metaCAPI";
 
 // Register GSAP plugin
@@ -1313,6 +1314,25 @@ const HomePage: React.FC = () => {
                   </a>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900">
+        <div className="w-full px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-5xl font-black mb-4 bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
+                Contact Us
+              </h2>
+              <p className="text-lg md:text-xl text-blue-200">
+                Fill out the form and we'll get back to you as soon as possible
+              </p>
+            </div>
+            <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-cyan-400/30 rounded-2xl p-8 backdrop-blur-sm">
+              <ContactForm />
             </div>
           </div>
         </div>

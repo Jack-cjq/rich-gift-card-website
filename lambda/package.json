@@ -1,0 +1,11 @@
+{
+  "name": "form-submit-handler",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AWS Lambda function for form submission with email sending and Meta CAPI",
+  "main": "form-submit-handler.js",
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.0.0"
+  }
+}
+

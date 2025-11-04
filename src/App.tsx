@@ -14,6 +14,7 @@ import BlogPost3 from "./pages/BlogPost3";
 import Rates from "./pages/Rates";
 import Rewards from "./pages/Rewards";
 import CommonFooter from "./components/CommonFooter";
+import { MetaEvents } from "./utils/metaCAPI";
 
 // Register GSAP plugin
 if (typeof window !== "undefined" && gsap) {
@@ -118,6 +119,29 @@ const HomePage: React.FC = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [mediaScrollPosition, setMediaScrollPosition] = useState(0);
   const mediaAutoplayIntervalRef = useRef<number | null>(null);
+
+  // Meta CAPI event handlers
+  const handleWhatsAppClick = () => {
+    MetaEvents.whatsAppClick({
+      content_name: 'WhatsApp Contact Button',
+      content_category: 'Social Media',
+      currency: 'USD',
+      value: 0
+    });
+    window.open('https://api.whatsapp.com/send?phone=8619371138377&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019371138377', '_blank');
+  };
+
+  const handleDownloadClick = (platform: 'iOS' | 'Android') => {
+    MetaEvents.downloadClick(platform, {
+      currency: 'USD',
+      value: 0
+    });
+  };
+
+  // Track page view on mount
+  useEffect(() => {
+    MetaEvents.pageView();
+  }, []);
 
   // Testimonial continuous smooth scrolling effect
   useEffect(() => {
@@ -399,11 +423,17 @@ const HomePage: React.FC = () => {
             Trading
           </div>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl shadow-blue-500/50 text-lg font-semibold flex items-center gap-3 hover:from-blue-700 hover:to-purple-700 hover:shadow-blue-500/60 hover:scale-105 active:scale-95 transition-all duration-200 backdrop-blur-sm border border-white/20">
+            <button 
+              onClick={() => handleDownloadClick('iOS')}
+              className="px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl shadow-blue-500/50 text-lg font-semibold flex items-center gap-3 hover:from-blue-700 hover:to-purple-700 hover:shadow-blue-500/60 hover:scale-105 active:scale-95 transition-all duration-200 backdrop-blur-sm border border-white/20"
+            >
               <img src="/images/apple.png" alt="Apple" className="w-6 h-6" />
               Get on iOS
             </button>
-            <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-2xl shadow-cyan-500/50 text-lg font-semibold flex items-center gap-3 hover:from-cyan-600 hover:to-blue-600 hover:shadow-cyan-500/60 hover:scale-105 active:scale-95 transition-all duration-200 backdrop-blur-sm border border-white/20">
+            <button 
+              onClick={() => handleDownloadClick('Android')}
+              className="px-6 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-2xl shadow-cyan-500/50 text-lg font-semibold flex items-center gap-3 hover:from-cyan-600 hover:to-blue-600 hover:shadow-cyan-500/60 hover:scale-105 active:scale-95 transition-all duration-200 backdrop-blur-sm border border-white/20"
+            >
               <img src="/images/android.png" alt="Android" className="w-6 h-6" />
               Get on Android
             </button>
@@ -414,7 +444,7 @@ const HomePage: React.FC = () => {
               Trade on web
             </button>
             <button 
-              onClick={() => window.open('https://api.whatsapp.com/send?phone=8619371138377&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019371138377', '_blank')}
+              onClick={handleWhatsAppClick}
               className="px-6 py-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-blue-600 text-white shadow-2xl shadow-indigo-500/50 text-lg font-semibold hover:from-indigo-600 hover:to-blue-700 hover:shadow-indigo-500/60 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-3 backdrop-blur-sm border border-white/20"
             >
               <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">

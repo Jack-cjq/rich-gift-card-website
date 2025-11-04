@@ -118,18 +118,6 @@ const HomePage: React.FC = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [mediaScrollPosition, setMediaScrollPosition] = useState(0);
   const mediaAutoplayIntervalRef = useRef<number | null>(null);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
-  const [isVideoMuted, setIsVideoMuted] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  // Ensure inline playback on iOS Safari
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.setAttribute('playsinline', 'true');
-      videoRef.current.setAttribute('webkit-playsinline', 'true');
-      videoRef.current.setAttribute('muted', isVideoMuted ? 'true' : 'false');
-    }
-  }, [isVideoMuted]);
 
   // Testimonial continuous smooth scrolling effect
   useEffect(() => {
@@ -375,102 +363,11 @@ const HomePage: React.FC = () => {
     <main ref={rootRef} className="min-h-screen w-full bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900 text-white">
        {/* Hero */}
        <section id="hero" ref={(el) => { sectionsRef.current[0] = el; }} className="relative min-h-screen overflow-hidden">
-        {/* Video Background */}
-        <div className="absolute inset-0 -z-20">
-          {/* Responsive background video for all devices */}
-          <video
-            ref={videoRef}
-            className="block w-full h-full min-w-full min-h-full object-cover object-center"
-            autoPlay
-            muted={isVideoMuted}
-            loop
-            playsInline
-            preload="metadata"
-            onPlay={() => setIsVideoPlaying(true)}
-            onPause={() => setIsVideoPlaying(false)}
-            onError={(e) => {
-              console.warn('Video failed to load, falling back to gradient background');
-              // Hide video on error and show fallback
-              const videoElement = e.target as HTMLVideoElement;
-              videoElement.style.display = 'none';
-            }}
-          >
-            {/* Optional mobile-specific source if provided later */}
-            <source media="(max-width: 767px)" srcSet="/videos/v1.mp4" type="video/mp4" />
-            <source src="/videos/v1.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          {/* Video overlay for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-purple-900/60 to-indigo-900/70"></div>
-        </div>
+        {/* Gradient Background */}
+        <div className="absolute inset-0 -z-20 bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900"></div>
         
         {/* Original gradient overlay for additional depth */}
         <div id="heroGlow" className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(34,211,238,0.1)_0%,rgba(147,51,234,0.2)_50%,rgba(34,211,238,0.1)_100%)] bg-[length:200%_100%]"></div>
-
-        {/* Controls layer above all backgrounds */}
-        <div className="absolute inset-0 pointer-events-none">
-          {/* Play/Pause */}
-          <button
-            onClick={() => {
-              if (videoRef.current) {
-                if (isVideoPlaying) {
-                  videoRef.current.pause();
-                } else {
-                  videoRef.current.play();
-                }
-              }
-            }}
-            className="hidden md:flex pointer-events-auto absolute top-4 right-4 z-40 w-12 h-12 bg-black/60 backdrop-blur-sm rounded-full items-center justify-center text-white hover:bg-black/80 transition-all duration-200 border border-white/20"
-            aria-label={isVideoPlaying ? "Pause video" : "Play video"}
-            type="button"
-          >
-            {isVideoPlaying ? (
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
-              </svg>
-            ) : (
-              <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-            )}
-          </button>
-
-          {/* Mute/Unmute */}
-          <button
-            onClick={async (e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              if (!videoRef.current) return;
-              try {
-                if (isVideoMuted) {
-                  videoRef.current.muted = false;
-                  videoRef.current.volume = 0.35;
-                  await videoRef.current.play();
-                  setIsVideoMuted(false);
-                } else {
-                  videoRef.current.muted = true;
-                  setIsVideoMuted(true);
-                }
-              } catch (err) {
-                console.warn('Autoplay with sound was blocked. User gesture required.', err);
-              }
-            }}
-            className="hidden md:flex pointer-events-auto absolute top-20 left-4 z-40 w-16 h-16 bg-red-500 hover:bg-red-600 active:bg-red-700 rounded-full items-center justify-center text-white transition-all duration-200 border-4 border-white shadow-2xl"
-            aria-label={isVideoMuted ? "Unmute video" : "Mute video"}
-            type="button"
-          >
-            {isVideoMuted ? (
-              <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M3 10v4h4l5 5V5L7 10H3zm13.59 2l2.7 2.7-1.41 1.41L15.17 13l-2.71-2.71 1.41-1.41L17.59 11l2.7-2.7 1.41 1.41L19 12z"/>
-              </svg>
-            ) : (
-              <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M3 10v4h4l5 5V5L7 10H3zm10.5 2a4.5 4.5 0 00-2.5-4.06v8.12A4.5 4.5 0 0013.5 12zm0-8a8.5 8.5 0 010 16v-2a6.5 6.5 0 000-12v-2z"/>
-              </svg>
-            )}
-          </button>
-        </div>
         
         {/* Rectangular Orbiting Country Flags */}
         <div className="absolute inset-0 pointer-events-none flex items-center justify-center pt-24">
@@ -501,9 +398,6 @@ const HomePage: React.FC = () => {
             of Gift Card<br />
             Trading
           </div>
-          <p className="mt-6 text-lg md:text-xl text-blue-200 drop-shadow-lg bg-black/20 backdrop-blur-sm px-4 py-2 rounded-lg inline-block">
-            Experience fast, secure, and reliable gift card and crypto trading at its best.
-          </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl shadow-blue-500/50 text-lg font-semibold flex items-center gap-3 hover:from-blue-700 hover:to-purple-700 hover:shadow-blue-500/60 hover:scale-105 active:scale-95 transition-all duration-200 backdrop-blur-sm border border-white/20">
               <img src="/images/apple.png" alt="Apple" className="w-6 h-6" />

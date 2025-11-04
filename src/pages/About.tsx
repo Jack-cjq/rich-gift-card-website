@@ -28,15 +28,20 @@ const About: React.FC = () => {
         <div className="w-full px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              {/* Left Column - Image */}
+              {/* Left Column - Company Introduction Video */}
               <div className="order-2 md:order-1">
                 <div className="relative">
                   <div className="w-full h-96 bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-cyan-400/30 rounded-2xl backdrop-blur-sm overflow-hidden">
-                    <img 
-                      src="/images/About-img1.png" 
-                      alt="Professional Team" 
+                    <video 
                       className="w-full h-full object-cover rounded-2xl"
-                    />
+                      controls
+                      playsInline
+                      preload="metadata"
+                      poster="/images/Rich-logo.png"
+                    >
+                      <source src="/videos/v1.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
                   </div>
                 </div>
               </div>

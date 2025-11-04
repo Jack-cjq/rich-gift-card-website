@@ -38,6 +38,15 @@ const Navigation: React.FC = () => {
 
   const isCurrentPage = (path: string) => location.pathname === path;
 
+  // Meta CAPI event handler - WhatsApp 点击转化事件
+  const handleWhatsAppClick = () => {
+    MetaEvents.whatsAppClick({
+      currency: 'USD',
+      value: 0
+    });
+    window.open('https://api.whatsapp.com/send?phone=8619371138377&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019371138377', '_blank');
+  };
+
   // Scroll detection for navbar visibility
   useEffect(() => {
     const handleScroll = () => {
@@ -94,7 +103,7 @@ const Navigation: React.FC = () => {
             Login
           </button>
           <button 
-            onClick={() => window.open('https://api.whatsapp.com/send?phone=8619371138377&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019371138377', '_blank')}
+            onClick={handleWhatsAppClick}
             className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold hover:from-cyan-500 hover:to-blue-600 transition-all duration-200 shadow-lg shadow-cyan-500/25"
           >
             Get started
@@ -120,7 +129,7 @@ const HomePage: React.FC = () => {
   const [mediaScrollPosition, setMediaScrollPosition] = useState(0);
   const mediaAutoplayIntervalRef = useRef<number | null>(null);
 
-  // Meta CAPI event handlers
+  // Meta CAPI event handler - 只追踪 WhatsApp 点击转化事件
   const handleWhatsAppClick = () => {
     MetaEvents.whatsAppClick({
       currency: 'USD',
@@ -128,40 +137,6 @@ const HomePage: React.FC = () => {
     });
     window.open('https://api.whatsapp.com/send?phone=8619371138377&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019371138377', '_blank');
   };
-
-  const handleIOSDownload = () => {
-    MetaEvents.iosDownload({
-      currency: 'USD',
-      value: 0
-    });
-  };
-
-  const handleAndroidDownload = () => {
-    MetaEvents.androidDownload({
-      currency: 'USD',
-      value: 0
-    });
-  };
-
-  const handleTradeOnWeb = () => {
-    MetaEvents.tradeOnWeb({
-      currency: 'USD',
-      value: 0
-    });
-  };
-
-  const handleTikTokFollow = () => {
-    MetaEvents.tiktokFollow({
-      currency: 'USD',
-      value: 0
-    });
-    window.open('https://www.tiktok.com/@miss.rich77', '_blank');
-  };
-
-  // Track page view on mount
-  useEffect(() => {
-    MetaEvents.pageView();
-  }, []);
 
   // Testimonial continuous smooth scrolling effect
   useEffect(() => {
@@ -443,24 +418,15 @@ const HomePage: React.FC = () => {
             Trading
           </div>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <button 
-              onClick={handleIOSDownload}
-              className="px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl shadow-blue-500/50 text-lg font-semibold flex items-center gap-3 hover:from-blue-700 hover:to-purple-700 hover:shadow-blue-500/60 hover:scale-105 active:scale-95 transition-all duration-200 backdrop-blur-sm border border-white/20"
-            >
+            <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl shadow-blue-500/50 text-lg font-semibold flex items-center gap-3 hover:from-blue-700 hover:to-purple-700 hover:shadow-blue-500/60 hover:scale-105 active:scale-95 transition-all duration-200 backdrop-blur-sm border border-white/20">
               <img src="/images/apple.png" alt="Apple" className="w-6 h-6" />
               Get on iOS
             </button>
-            <button 
-              onClick={handleAndroidDownload}
-              className="px-6 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-2xl shadow-cyan-500/50 text-lg font-semibold flex items-center gap-3 hover:from-cyan-600 hover:to-blue-600 hover:shadow-cyan-500/60 hover:scale-105 active:scale-95 transition-all duration-200 backdrop-blur-sm border border-white/20"
-            >
+            <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-2xl shadow-cyan-500/50 text-lg font-semibold flex items-center gap-3 hover:from-cyan-600 hover:to-blue-600 hover:shadow-cyan-500/60 hover:scale-105 active:scale-95 transition-all duration-200 backdrop-blur-sm border border-white/20">
               <img src="/images/android.png" alt="Android" className="w-6 h-6" />
               Get on Android
             </button>
-            <button 
-              onClick={handleTradeOnWeb}
-              className="px-6 py-4 rounded-2xl bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-2xl shadow-purple-500/50 text-lg font-semibold flex items-center gap-3 hover:from-purple-600 hover:to-indigo-600 hover:shadow-purple-500/60 hover:scale-105 active:scale-95 transition-all duration-200 backdrop-blur-sm border border-white/20"
-            >
+            <button className="px-6 py-4 rounded-2xl bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-2xl shadow-purple-500/50 text-lg font-semibold flex items-center gap-3 hover:from-purple-600 hover:to-indigo-600 hover:shadow-purple-500/60 hover:scale-105 active:scale-95 transition-all duration-200 backdrop-blur-sm border border-white/20">
               <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 496 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                 <path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"></path>
               </svg>
@@ -476,7 +442,7 @@ const HomePage: React.FC = () => {
               Trade on WhatsApp
             </button>
             <button 
-              onClick={handleTikTokFollow}
+              onClick={() => window.open('https://www.tiktok.com/@miss.rich77', '_blank')}
               className="px-6 py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-red-500 text-white shadow-2xl shadow-pink-500/50 text-lg font-semibold hover:from-pink-600 hover:to-red-600 hover:shadow-pink-500/60 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-3 backdrop-blur-sm border border-white/20"
             >
               <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -594,7 +560,7 @@ const HomePage: React.FC = () => {
             </p>
             <div className="mb-6">
               <button 
-                onClick={() => window.open('https://api.whatsapp.com/send?phone=8619371138377&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019371138377', '_blank')}
+                onClick={handleWhatsAppClick}
                 className="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-xl hover:from-cyan-600 hover:to-blue-600 transition-all duration-200"
               >
                 Trade Now →
@@ -1163,10 +1129,7 @@ const HomePage: React.FC = () => {
                 Get the app now and trade your gift cards instantly<br/>with Rich!
               </p>
               <div className="flex flex-wrap gap-4">
-                <button 
-                  onClick={handleIOSDownload}
-                  className="bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-500 hover:to-blue-600 md:text-md text-sm text-white md:py-5 md:px-8 py-3 px-3 border border-cyan-400/50 rounded-full flex items-center shadow-lg shadow-cyan-500/25 transition-all duration-200"
-                >
+                <button className="bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-500 hover:to-blue-600 md:text-md text-sm text-white md:py-5 md:px-8 py-3 px-3 border border-cyan-400/50 rounded-full flex items-center shadow-lg shadow-cyan-500/25 transition-all duration-200">
                   <img 
                     alt="apple" 
                     loading="lazy" 
@@ -1179,10 +1142,7 @@ const HomePage: React.FC = () => {
                   />
                   Get on iOS
                 </button>
-                <button 
-                  onClick={handleAndroidDownload}
-                  className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 md:text-md text-sm text-white md:px-8 py-3 px-3 border border-purple-400/50 rounded-full flex items-center shadow-lg shadow-purple-500/25 transition-all duration-200"
-                >
+                <button className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 md:text-md text-sm text-white md:px-8 py-3 px-3 border border-purple-400/50 rounded-full flex items-center shadow-lg shadow-purple-500/25 transition-all duration-200">
                   <img 
                     alt="android" 
                     loading="lazy" 

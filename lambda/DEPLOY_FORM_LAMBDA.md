@@ -13,7 +13,10 @@
 
 3. **安装依赖**：
    - 在代码编辑器中，点击 **Add package**
-   - 搜索并添加 `@aws-sdk/client-ses`
+   - 搜索并添加：
+     - `@aws-sdk/client-ses`
+     - `@aws-sdk/client-dynamodb`
+     - `@aws-sdk/lib-dynamodb`
    - 或使用下面的 CLI 方法
 
 ## 方法 2: 使用 AWS CLI 和 ZIP 上传
@@ -25,7 +28,7 @@
 cd lambda
 
 # 创建 node_modules（如果还没有）
-npm install @aws-sdk/client-ses
+npm install @aws-sdk/client-ses @aws-sdk/client-dynamodb @aws-sdk/lib-dynamodb
 
 # 创建部署 ZIP
 zip -r form-submit-handler.zip form-submit-handler.js package.json node_modules/
@@ -55,6 +58,8 @@ aws lambda update-function-configuration \
     SES_REGION=us-east-1,
     ADMIN_EMAIL=admin@yourdomain.com,
     FROM_EMAIL=noreply@yourdomain.com
+    DYNAMODB_TABLE_NAME=form-submissions
+    AWS_REGION=us-east-1
   }"
 ```
 
@@ -85,10 +90,12 @@ aws lambda get-function-url-config \
 
 ## ⚠️ 重要提示
 
-1. **SES 权限**：确保 Lambda 执行角色有 SES 发送邮件权限
-2. **邮箱验证**：FROM_EMAIL 和 ADMIN_EMAIL 必须在 SES 中验证
-3. **CORS 配置**：确保 Lambda Function URL 的 CORS 已正确配置
-4. **环境变量**：所有环境变量必须正确设置
+1. **DynamoDB 表**：需要先创建 DynamoDB 表（见 FORM_SUBMIT_SETUP.md 步骤 1）
+2. **DynamoDB 权限**：确保 Lambda 执行角色有 DynamoDB PutItem 权限
+3. **SES 权限**：确保 Lambda 执行角色有 SES 发送邮件权限
+4. **邮箱验证**：FROM_EMAIL 和 ADMIN_EMAIL 必须在 SES 中验证
+5. **CORS 配置**：确保 Lambda Function URL 的 CORS 已正确配置
+6. **环境变量**：所有环境变量必须正确设置（包括 DYNAMODB_TABLE_NAME）
 
 ## 🧪 测试 Lambda 函数
 
@@ -109,6 +116,10 @@ curl -X POST https://your-lambda-url.lambda-url.region.on.aws/ \
 {
   "success": true,
   "message": "Form submitted successfully",
+  "submissionId": "1234567890-abc123def",
+  "database": {
+    "success": true
+  },
   "emailSent": {
     "admin": true,
     "user": true

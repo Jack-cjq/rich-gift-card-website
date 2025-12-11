@@ -443,7 +443,7 @@ const HomePage: React.FC = () => {
               Trade on WhatsApp
             </button>
             <button 
-              onClick={() => window.open('https://www.tiktok.com/@miss.rich77', '_blank')}
+              onClick={() => window.open('https://www.tiktok.com/@veryrich429', '_blank')}
               className="px-6 py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-red-500 text-white shadow-2xl shadow-pink-500/50 text-lg font-semibold hover:from-pink-600 hover:to-red-600 hover:shadow-pink-500/60 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-3 backdrop-blur-sm border border-white/20"
             >
               <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">

@@ -4,33 +4,33 @@ import CommonFooter from '../components/CommonFooter';
 
 const BlogPost3: React.FC = () => {
   return (
-    <main className="min-h-screen w-full bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900 text-white">
+    <main className="min-h-screen w-full bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50 text-slate-800">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900">
+      <section className="py-20 bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50">
         <div className="w-full px-6">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
-              <Link to="/blogs" className="text-cyan-300 hover:text-cyan-200 transition-colors">
+              <Link to="/blogs" className="text-teal-600 hover:text-teal-700 transition-colors">
                 ← Back to Stories & Insights
               </Link>
             </div>
             
             <div className="mb-6">
-              <span className="text-sm bg-gradient-to-r from-cyan-500 to-purple-500 text-white px-3 py-1 rounded-full font-semibold">
+              <span className="text-sm bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-1 rounded-full font-semibold">
                 GIFT CARD TRADE
               </span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent mb-6">
+            <h1 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-6">
               Where to Sell Gift Cards in Nigeria at the Best Rate
             </h1>
             
-            <div className="flex items-center gap-4 text-blue-200 mb-8">
-              <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center">
+            <div className="flex items-center gap-4 text-slate-600 mb-8">
+              <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold">K</span>
               </div>
               <div>
-                <div className="font-semibold text-white">Kevin</div>
+                <div className="font-semibold text-slate-800">Kevin</div>
                 <div className="text-sm">123 days ago • 10 min read</div>
               </div>
             </div>
@@ -39,38 +39,38 @@ const BlogPost3: React.FC = () => {
       </section>
 
       {/* Article Content */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900">
+      <section className="py-20 bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50">
         <div className="w-full px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-3xl p-8 md:p-12 border border-cyan-400/30 backdrop-blur-sm">
+            <div className="bg-white/60 rounded-3xl p-8 md:p-12 border border-teal-200/50 backdrop-blur-sm shadow-lg">
               
               {/* Introduction */}
               <div className="mb-12">
-                <p className="text-xl text-blue-200 leading-relaxed mb-6">
+                <p className="text-xl text-slate-600 leading-relaxed mb-6">
                   Nigeria's gift card market has exploded in recent years, with millions of Nigerians looking to convert their unused gift cards into instant cash. However, with so many platforms claiming to offer the "best rates," finding a reliable and profitable option can be overwhelming.
                 </p>
-                <p className="text-lg text-blue-200 leading-relaxed">
+                <p className="text-lg text-slate-600 leading-relaxed">
                   After extensive research and testing various platforms, we've identified <strong className="text-cyan-300">Rich</strong> as the clear leader in Nigeria's gift card trading space. This comprehensive guide will show you why Rich consistently delivers the best rates, fastest payments, and most secure trading experience in Nigeria.
                 </p>
               </div>
 
               {/* Market Analysis */}
               <div className="mb-12">
-                <h2 className="text-3xl font-bold text-white mb-6">📊 Nigeria's Gift Card Market Analysis</h2>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-6">📊 Nigeria's Gift Card Market Analysis</h2>
                 
-                <div className="bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-2xl p-8 border border-cyan-400/30">
+                <div className="bg-white/60 rounded-2xl p-8 border border-teal-200/50 shadow-lg">
                   <div className="grid md:grid-cols-3 gap-6">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-cyan-300 mb-2">₦2.5B+</div>
-                      <div className="text-blue-200">Annual Gift Card Volume</div>
+                      <div className="text-3xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-2">₦2.5B+</div>
+                      <div className="text-slate-600">Annual Gift Card Volume</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-cyan-300 mb-2">500K+</div>
-                      <div className="text-blue-200">Active Traders</div>
+                      <div className="text-3xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-2">500K+</div>
+                      <div className="text-slate-600">Active Traders</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-cyan-300 mb-2">85%</div>
-                      <div className="text-blue-200">Market Growth Rate</div>
+                      <div className="text-3xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-2">85%</div>
+                      <div className="text-slate-600">Market Growth Rate</div>
                     </div>
                   </div>
                 </div>

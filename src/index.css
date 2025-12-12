@@ -40,3 +40,28 @@ h1 {
 .scrollbar-hide::-webkit-scrollbar { 
   display: none;  /* Safari and Chrome */
 }
+
+/* 轮播图容器和图片 - 图片自然高度显示,不裁剪 */
+.carousel-container {
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-image {
+  position: relative;
+  width: 100%;
+  display: block;
+  line-height: 0; /* 消除图片下方的空白间隙 */
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-image img.carousel-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+}

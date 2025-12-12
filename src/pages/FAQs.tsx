@@ -32,14 +32,14 @@ const FAQs: React.FC = () => {
   };
 
   return (
-    <main className="min-h-screen w-full bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900 text-white">
+    <main className="min-h-screen w-full bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50 text-slate-800">
 
       {/* Hero Section */}
-      <section className="py-24 bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900">
+      <section className="py-24 bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50">
         <div className="w-full px-6 text-center">
-          <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6 bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6 bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
             Frequently Asked Questions
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mt-4"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-teal-500 to-cyan-500 mx-auto mt-4"></div>
           </h1>
         </div>
       </section>
@@ -50,11 +50,11 @@ const FAQs: React.FC = () => {
           <div className="max-w-4xl mx-auto">
             <div className="space-y-4">
               {faqs.map((faq, index) => (
-                <div key={index} className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-cyan-400/30 rounded-2xl overflow-hidden backdrop-blur-sm shadow-lg">
+                <div key={index} className="bg-white/60 border border-teal-200/50 rounded-2xl overflow-hidden backdrop-blur-sm shadow-lg">
                   {/* Question Header */}
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full p-6 text-left flex items-center justify-between bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 transition-colors duration-200"
+                    className="w-full p-6 text-left flex items-center justify-between bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 transition-colors duration-200"
                   >
                     <div className="flex items-center gap-4">
                       <span className="text-2xl font-bold text-white min-w-[3rem]">
@@ -78,9 +78,9 @@ const FAQs: React.FC = () => {
                   
                   {/* Answer Body */}
                   {openFAQ === index && (
-                    <div className="p-6 bg-gradient-to-br from-blue-500/10 to-purple-500/10">
+                    <div className="p-6 bg-white/40">
                       <div className="ml-16">
-                        <p className="text-blue-200 leading-relaxed">{faq.answer}</p>
+                        <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
                       </div>
                     </div>
                   )}

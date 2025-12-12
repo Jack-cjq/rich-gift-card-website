@@ -4,33 +4,33 @@ import CommonFooter from '../components/CommonFooter';
 
 const BlogPost2: React.FC = () => {
   return (
-    <main className="min-h-screen w-full bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900 text-white">
+    <main className="min-h-screen w-full bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50 text-slate-800">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900">
+      <section className="py-20 bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50">
         <div className="w-full px-6">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
-              <Link to="/blogs" className="text-cyan-300 hover:text-cyan-200 transition-colors">
+              <Link to="/blogs" className="text-teal-600 hover:text-teal-700 transition-colors">
                 ← Back to Stories & Insights
               </Link>
             </div>
             
             <div className="mb-6">
-              <span className="text-sm bg-gradient-to-r from-cyan-500 to-purple-500 text-white px-3 py-1 rounded-full font-semibold">
+              <span className="text-sm bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-1 rounded-full font-semibold">
                 GIFT CARD TRADE
               </span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent mb-6">
+            <h1 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-6">
               Best Gift Cards for Music Lovers in Nigeria
             </h1>
             
-            <div className="flex items-center gap-4 text-blue-200 mb-8">
-              <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center">
+            <div className="flex items-center gap-4 text-slate-600 mb-8">
+              <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold">Y</span>
               </div>
               <div>
-                <div className="font-semibold text-white">Yaya</div>
+                <div className="font-semibold text-slate-800">Yaya</div>
                 <div className="text-sm">122 days ago • 6 min read</div>
               </div>
             </div>
@@ -39,29 +39,29 @@ const BlogPost2: React.FC = () => {
       </section>
 
       {/* Article Content */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900">
+      <section className="py-20 bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50">
         <div className="w-full px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-3xl p-8 md:p-12 border border-cyan-400/30 backdrop-blur-sm">
+            <div className="bg-white/60 rounded-3xl p-8 md:p-12 border border-teal-200/50 backdrop-blur-sm shadow-lg">
               
               {/* Introduction */}
               <div className="mb-12">
-                <p className="text-xl text-blue-200 leading-relaxed mb-6">
+                <p className="text-xl text-slate-600 leading-relaxed mb-6">
                   Music is the universal language that connects us all, and in Nigeria, the love for music runs deep. From Afrobeats to gospel, hip-hop to traditional sounds, Nigerians have an insatiable appetite for quality music experiences.
                 </p>
-                <p className="text-lg text-blue-200 leading-relaxed">
+                <p className="text-lg text-slate-600 leading-relaxed">
                   Whether you're a music creator, enthusiast, or simply someone who enjoys unlimited access to your favorite tunes, gift cards for music platforms can unlock endless entertainment possibilities. This guide explores the best music gift cards available in Nigeria and how <strong className="text-cyan-300">Rich</strong> makes accessing them easier and more profitable than ever.
                 </p>
               </div>
 
               {/* Top Music Gift Cards */}
               <div className="mb-12">
-                <h2 className="text-3xl font-bold text-white mb-6">🎵 Top Music Gift Cards for Nigerian Music Lovers</h2>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-6">🎵 Top Music Gift Cards for Nigerian Music Lovers</h2>
                 
                 <div className="grid md:grid-cols-2 gap-8">
-                  <div className="bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-2xl p-6 border border-cyan-400/30">
-                    <h3 className="text-xl font-bold text-white mb-4">🎧 Apple Music Gift Cards</h3>
-                    <p className="text-blue-200 leading-relaxed mb-4">
+                  <div className="bg-white/60 rounded-2xl p-6 border border-teal-200/50 shadow-lg">
+                    <h3 className="text-xl font-bold text-slate-800 mb-4">🎧 Apple Music Gift Cards</h3>
+                    <p className="text-slate-600 leading-relaxed mb-4">
                       Perfect for iOS users who want access to Apple's vast music library. Apple Music offers over 100 million songs, including exclusive Nigerian content and curated playlists.
                     </p>
                     <div className="text-cyan-300 font-semibold">Rich Rate: ₦920 per $1</div>

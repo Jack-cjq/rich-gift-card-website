@@ -4,19 +4,19 @@ import CommonFooter from '../components/CommonFooter';
 
 const BlogPost1: React.FC = () => {
   return (
-    <main className="min-h-screen w-full bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900 text-white">
+    <main className="min-h-screen w-full bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50 text-slate-800">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900">
+      <section className="py-20 bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50">
         <div className="w-full px-6">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
-              <Link to="/blogs" className="text-cyan-300 hover:text-cyan-200 transition-colors">
+              <Link to="/blogs" className="text-teal-600 hover:text-teal-700 transition-colors">
                 ← Back to Stories & Insights
               </Link>
             </div>
             
             <div className="mb-6">
-              <span className="text-sm bg-gradient-to-r from-cyan-500 to-purple-500 text-white px-3 py-1 rounded-full font-semibold">
+              <span className="text-sm bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-1 rounded-full font-semibold">
                 GIFT CARD TRADE
               </span>
               <span className="ml-3 text-sm bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded-full border border-yellow-400/30">
@@ -24,16 +24,16 @@ const BlogPost1: React.FC = () => {
               </span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent mb-6">
+            <h1 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-6">
               How to Sell Your Gift Cards for the Best Rates in Nigeria
             </h1>
             
-            <div className="flex items-center gap-4 text-blue-200 mb-8">
-              <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center">
+            <div className="flex items-center gap-4 text-slate-600 mb-8">
+              <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold">Y</span>
               </div>
               <div>
-                <div className="font-semibold text-white">Yaya</div>
+                <div className="font-semibold text-slate-800">Yaya</div>
                 <div className="text-sm">122 days ago • 8 min read</div>
               </div>
             </div>
@@ -42,29 +42,29 @@ const BlogPost1: React.FC = () => {
       </section>
 
       {/* Article Content */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900">
+      <section className="py-20 bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50">
         <div className="w-full px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-3xl p-8 md:p-12 border border-cyan-400/30 backdrop-blur-sm">
+            <div className="bg-white/60 rounded-3xl p-8 md:p-12 border border-teal-200/50 backdrop-blur-sm shadow-lg">
               
               {/* Introduction */}
               <div className="mb-12">
-                <p className="text-xl text-blue-200 leading-relaxed mb-6">
+                <p className="text-xl text-slate-600 leading-relaxed mb-6">
                   In Nigeria's rapidly growing digital economy, gift cards have become a valuable asset for many individuals. Whether you've received gift cards as presents, earned them through rewards programs, or purchased them for personal use, knowing how to sell them at the best rates can significantly impact your financial returns.
                 </p>
-                <p className="text-lg text-blue-200 leading-relaxed">
+                <p className="text-lg text-slate-600 leading-relaxed">
                   This comprehensive guide will walk you through the most effective strategies to maximize your gift card value, with a special focus on why <strong className="text-cyan-300">Rich</strong> stands out as the premier platform for gift card trading in Nigeria.
                 </p>
               </div>
 
               {/* Why Rich is the Best Choice */}
               <div className="mb-12">
-                <h2 className="text-3xl font-bold text-white mb-6">Why Choose Rich for Gift Card Trading?</h2>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-6">Why Choose Rich for Gift Card Trading?</h2>
                 
                 <div className="grid md:grid-cols-2 gap-8 mb-8">
-                  <div className="bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-2xl p-6 border border-cyan-400/30">
-                    <h3 className="text-xl font-bold text-white mb-4">🏆 Highest Rates in Nigeria</h3>
-                    <p className="text-blue-200 leading-relaxed">
+                  <div className="bg-white/60 rounded-2xl p-6 border border-teal-200/50 shadow-lg">
+                    <h3 className="text-xl font-bold text-slate-800 mb-4">🏆 Highest Rates in Nigeria</h3>
+                    <p className="text-slate-600 leading-relaxed">
                       Rich consistently offers the most competitive rates in the Nigerian market. Our advanced rate calculator ensures you get maximum value for your gift cards, with rates that are often 15-25% higher than competitors.
                     </p>
                   </div>
@@ -94,11 +94,11 @@ const BlogPost1: React.FC = () => {
 
               {/* Step-by-Step Guide */}
               <div className="mb-12">
-                <h2 className="text-3xl font-bold text-white mb-6">Step-by-Step Guide to Selling Gift Cards on Rich</h2>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-6">Step-by-Step Guide to Selling Gift Cards on Rich</h2>
                 
                 <div className="space-y-6">
                   <div className="flex gap-6">
-                    <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-white font-bold text-sm">1</span>
                     </div>
                     <div>
@@ -110,7 +110,7 @@ const BlogPost1: React.FC = () => {
                   </div>
                   
                   <div className="flex gap-6">
-                    <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-white font-bold text-sm">2</span>
                     </div>
                     <div>
@@ -122,7 +122,7 @@ const BlogPost1: React.FC = () => {
                   </div>
                   
                   <div className="flex gap-6">
-                    <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-white font-bold text-sm">3</span>
                     </div>
                     <div>
@@ -134,7 +134,7 @@ const BlogPost1: React.FC = () => {
                   </div>
                   
                   <div className="flex gap-6">
-                    <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-white font-bold text-sm">4</span>
                     </div>
                     <div>
@@ -146,7 +146,7 @@ const BlogPost1: React.FC = () => {
                   </div>
                   
                   <div className="flex gap-6">
-                    <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-white font-bold text-sm">5</span>
                     </div>
                     <div>
@@ -225,7 +225,7 @@ const BlogPost1: React.FC = () => {
                   Join thousands of satisfied customers who trust Rich for their gift card trading needs.
                 </p>
                 <button 
-                  onClick={() => window.open('https://api.whatsapp.com/send?phone=8619371138377&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019371138377', '_blank')}
+                  onClick={() => window.open('https://api.whatsapp.com/send?phone=8619972915971&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019972915971', '_blank')}
                   className="inline-block px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold rounded-full hover:from-cyan-600 hover:to-purple-600 transition-all duration-200 shadow-lg"
                 >
                   Start Trading Now

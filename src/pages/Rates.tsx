@@ -64,10 +64,10 @@ const Rates: React.FC = () => {
   }, [selectedSubCategory, cardAmount, selectedCurrency, usdToCnyRate, gbpToCnyRate, cadToCnyRate, cnyToLocalRate]);
 
   return (
-    <main className="min-h-screen w-full bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900 text-white">
+    <main className="min-h-screen w-full bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50 text-slate-800">
 
       {/* Hero Section */}
-      <section className="py-24 bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900 relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -77,13 +77,13 @@ const Rates: React.FC = () => {
         </div>
         
         <div className="w-full px-6 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6 bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6 bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
             Rich's Gift Card
           </h1>
-          <h2 className="text-5xl md:text-7xl font-black leading-tight mb-6 bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-7xl font-black leading-tight mb-6 bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
             Rate Calculator
           </h2>
-          <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
             Find out the current rate of different gift cards in Naira or Cedis using Rich's gift card rate calculator.
           </p>
         </div>
@@ -192,7 +192,7 @@ const Rates: React.FC = () => {
 
               {/* Get Started Button */}
               <button 
-                onClick={() => window.open('https://api.whatsapp.com/send?phone=8619371138377&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019371138377', '_blank')}
+                onClick={() => window.open('https://api.whatsapp.com/send?phone=8619972915971&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019972915971', '_blank')}
                 className="w-full py-4 bg-cyan-500 text-white font-semibold rounded-lg hover:bg-cyan-600 transition-colors mb-4"
               >
                 Get Started
@@ -208,32 +208,32 @@ const Rates: React.FC = () => {
         </section>
 
         {/* How to Sell Gift Cards Section */}
-        <section className="py-20 bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900">
+        <section className="py-20 bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50">
           <div className="w-full px-6">
             <div className="max-w-4xl mx-auto">
               {/* Section Header */}
               <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+                <h2 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-4">
                   How to Sell Gift Cards on Rich
                 </h2>
-                <p className="text-lg text-blue-200 max-w-2xl mx-auto">
+                <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                   If you want to sell your gift card, you can use our{" "}
-                  <span className="text-cyan-300 font-semibold">Web App</span> or download our{" "}
-                  <span className="text-cyan-300 font-semibold">Mobile App</span> then follow below step-by-step guide.
+                  <span className="text-teal-600 font-semibold">Web App</span> or download our{" "}
+                  <span className="text-teal-600 font-semibold">Mobile App</span> then follow below step-by-step guide.
                 </p>
               </div>
 
               {/* Steps Grid */}
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Step 1 */}
-                <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-cyan-400/30 backdrop-blur-sm">
+                <div className="bg-white/60 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-teal-200/50 backdrop-blur-sm">
                   <div className="flex items-center mb-4">
-                    <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">
                       1
                     </div>
-                    <h3 className="font-semibold text-white">Create Account</h3>
+                    <h3 className="font-semibold text-slate-800">Create Account</h3>
                   </div>
-                  <p className="text-blue-200 leading-relaxed">
+                  <p className="text-slate-600 leading-relaxed">
                     Create an account or sign in if you already have an account.
                   </p>
                 </div>
@@ -241,12 +241,12 @@ const Rates: React.FC = () => {
                 {/* Step 2 */}
                 <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-cyan-400/30 backdrop-blur-sm">
                   <div className="flex items-center mb-4">
-                    <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">
                       2
                     </div>
-                    <h3 className="font-semibold text-white">Add Bank Account</h3>
+                    <h3 className="font-semibold text-slate-800">Add Bank Account</h3>
                   </div>
-                  <p className="text-blue-200 leading-relaxed">
+                  <p className="text-slate-600 leading-relaxed">
                     Go to Wallet and add your Nigerian Bank Account.
                   </p>
                 </div>
@@ -254,12 +254,12 @@ const Rates: React.FC = () => {
                 {/* Step 3 */}
                 <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-cyan-400/30 backdrop-blur-sm">
                   <div className="flex items-center mb-4">
-                    <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">
                       3
                     </div>
-                    <h3 className="font-semibold text-white">Sell Gift Card</h3>
+                    <h3 className="font-semibold text-slate-800">Sell Gift Card</h3>
                   </div>
-                  <p className="text-blue-200 leading-relaxed">
+                  <p className="text-slate-600 leading-relaxed">
                     Go to the main menu and click Sell Gift Card.
                   </p>
                 </div>
@@ -267,12 +267,12 @@ const Rates: React.FC = () => {
                 {/* Step 4 */}
                 <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-cyan-400/30 backdrop-blur-sm">
                   <div className="flex items-center mb-4">
-                    <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">
                       4
                     </div>
-                    <h3 className="font-semibold text-white">Select Category</h3>
+                    <h3 className="font-semibold text-slate-800">Select Category</h3>
                   </div>
-                  <p className="text-blue-200 leading-relaxed">
+                  <p className="text-slate-600 leading-relaxed">
                     Select Gift Card category and a subcategory.
                   </p>
                 </div>
@@ -280,12 +280,12 @@ const Rates: React.FC = () => {
                 {/* Step 5 */}
                 <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-cyan-400/30 backdrop-blur-sm">
                   <div className="flex items-center mb-4">
-                    <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">
                       5
                     </div>
-                    <h3 className="font-semibold text-white">Enter Details</h3>
+                    <h3 className="font-semibold text-slate-800">Enter Details</h3>
                   </div>
-                  <p className="text-blue-200 leading-relaxed">
+                  <p className="text-slate-600 leading-relaxed">
                     Enter value of the gift card and upload image or type the ecode.
                   </p>
                 </div>
@@ -293,12 +293,12 @@ const Rates: React.FC = () => {
                 {/* Step 6 */}
                 <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-cyan-400/30 backdrop-blur-sm">
                   <div className="flex items-center mb-4">
-                    <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">
                       6
                     </div>
-                    <h3 className="font-semibold text-white">Submit Trade</h3>
+                    <h3 className="font-semibold text-slate-800">Submit Trade</h3>
                   </div>
-                  <p className="text-blue-200 leading-relaxed">
+                  <p className="text-slate-600 leading-relaxed">
                     Submit trade and wait for confirmation.
                   </p>
                 </div>

@@ -3,10 +3,10 @@ import CommonFooter from '../components/CommonFooter';
 
 const Rewards: React.FC = () => {
   return (
-    <main className="min-h-screen w-full bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900 text-white">
+    <main className="min-h-screen w-full bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50 text-slate-800">
 
       {/* Hero Section */}
-      <section className="py-24 bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900 relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -16,10 +16,10 @@ const Rewards: React.FC = () => {
         </div>
         
         <div className="w-full px-6 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6 bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6 bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
             Welcome to Rich's Rewards
           </h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
             Your loyalty means the world to us
           </p>
         </div>
@@ -29,8 +29,8 @@ const Rewards: React.FC = () => {
       <section className="py-16">
         <div className="w-full px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-cyan-400/30 rounded-2xl p-8 backdrop-blur-sm">
-              <p className="text-lg text-blue-200 leading-relaxed text-center">
+            <div className="bg-white/60 border border-teal-200/50 rounded-2xl p-8 backdrop-blur-sm shadow-lg">
+              <p className="text-lg text-slate-600 leading-relaxed text-center">
                 At Rich, we believe in giving back to our valued customers. That's why we're excited to introduce our Giftcardtonaira Rewards program, designed to make every transaction with us more rewarding. With five fantastic ways to earn rewards, you'll enjoy an array of benefits just by being a loyal customer.
               </p>
             </div>
@@ -42,16 +42,16 @@ const Rewards: React.FC = () => {
       <section className="py-20">
         <div className="w-full px-6">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-black mb-12 text-center bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-black mb-12 text-center bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
               Discover the ways to earn rewards
             </h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Trading Reward Points */}
-              <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-cyan-400/30 rounded-2xl p-6 backdrop-blur-sm">
-                <h3 className="text-xl font-bold mb-2 text-white">Trading</h3>
-                <p className="text-cyan-300 font-semibold mb-4">Reward Points</p>
-                <p className="text-blue-200 text-sm leading-relaxed">
+              <div className="bg-white/60 border border-teal-200/50 rounded-2xl p-6 backdrop-blur-sm shadow-lg">
+                <h3 className="text-xl font-bold mb-2 text-slate-800">Trading</h3>
+                <p className="text-teal-600 font-semibold mb-4">Reward Points</p>
+                <p className="text-slate-600 text-sm leading-relaxed">
                   For every gift card transaction you complete with us, you'll earn Trading Reward Points. The more you trade, the more points you'll accumulate, which can be redeemed for cash or other exciting rewards.
                 </p>
               </div>
@@ -93,7 +93,7 @@ const Rewards: React.FC = () => {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl p-6 relative overflow-hidden">
+              <div className="bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl p-6 relative overflow-hidden shadow-lg">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
                   <div className="absolute inset-0" style={{
@@ -106,12 +106,12 @@ const Rewards: React.FC = () => {
                   <h3 className="text-xl font-bold mb-4 text-white">
                     Are you ready to make the most of your Rich experience?
                   </h3>
-                  <p className="text-white/90 text-sm leading-relaxed mb-6">
+                  <p className="text-white/95 text-sm leading-relaxed mb-6">
                     Get started with Rich today and start unlocking the amazing benefits that await you. Happy trading!
                   </p>
                   <button 
-                    onClick={() => window.open('https://api.whatsapp.com/send?phone=8619371138377&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019371138377', '_blank')}
-                    className="w-full py-3 bg-white text-gray-800 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+                    onClick={() => window.open('https://api.whatsapp.com/send?phone=8619972915971&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019972915971', '_blank')}
+                    className="w-full py-3 bg-white text-slate-800 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
                   >
                     Trade Now
                   </button>

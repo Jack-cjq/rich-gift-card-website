@@ -50,12 +50,35 @@ h1 {
 }
 
 .carousel-image {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   display: block;
   line-height: 0; /* 消除图片下方的空白间隙 */
   margin: 0;
   padding: 0;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.carousel-image-placeholder {
+  position: relative; /* 占位图片保持相对定位，确保容器有高度 */
+  opacity: 0; /* 完全透明，不显示 */
+  visibility: hidden; /* 隐藏但保持布局空间 */
+  z-index: -1;
+}
+
+.carousel-image-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.carousel-image-hidden {
+  opacity: 0;
+  z-index: 0;
 }
 
 .carousel-image img.carousel-img {

@@ -465,15 +465,29 @@ const HomePage: React.FC = () => {
        <section id="hero" ref={(el) => { sectionsRef.current[0] = el; }} className="relative overflow-hidden">
         {/* Background Image Carousel */}
         <div className="carousel-container">
-          <div className="carousel-image">
+          {/* Placeholder to maintain container height */}
+          <div className="carousel-image carousel-image-placeholder">
             <img
-              src={bgImages[currentBgIndex]}
-              alt={`Background ${currentBgIndex + 1}`}
+              src={bgImages[0]}
+              alt="Background placeholder"
               className="carousel-img"
               loading="eager"
-              key={currentBgIndex}
             />
           </div>
+          {/* All carousel images overlaid */}
+          {bgImages.map((bg, index) => (
+            <div
+              key={index}
+              className={`carousel-image ${index === currentBgIndex ? 'carousel-image-active' : 'carousel-image-hidden'}`}
+            >
+              <img
+                src={bg}
+                alt={`Background ${index + 1}`}
+                className="carousel-img"
+                loading={index === 0 ? "eager" : "lazy"}
+              />
+            </div>
+          ))}
         </div>
         
         {/* Gradient Overlay removed to show background images clearly */}

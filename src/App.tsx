@@ -203,8 +203,6 @@ const HomePage: React.FC = () => {
   const [isTestimonialHovered, setIsTestimonialHovered] = useState(false);
   const testimonialAutoplayIntervalRef = useRef<number | null>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [mediaScrollPosition, setMediaScrollPosition] = useState(0);
-  const mediaAutoplayIntervalRef = useRef<number | null>(null);
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
   const bgImages = useMemo(() => ['/images/bg1.jpg', '/images/bg2.jpg', '/images/bg3.jpg', '/images/bg4.jpg', '/images/bg5.jpg'], []);
   const bgCarouselIntervalRef = useRef<number | null>(null);
@@ -289,39 +287,13 @@ const HomePage: React.FC = () => {
     }
   }, [isTestimonialHovered, testimonialCarouselRef]);
 
-  // Media carousel continuous smooth scrolling effect
+  // Preload brand ticker images
   useEffect(() => {
-    const startMediaAutoplay = () => {
-      if (mediaAutoplayIntervalRef.current) {
-        clearInterval(mediaAutoplayIntervalRef.current);
-      }
-      
-      mediaAutoplayIntervalRef.current = window.setInterval(() => {
-        setMediaScrollPosition(prev => {
-          const isMobile = window.innerWidth < 768;
-          const logoWidth = isMobile ? 92 : 160; // mobile: 80px + 12px gap, desktop: 112px + 48px gap
-          const totalWidth = logoWidth * 3; // 3 logos per set
-          const newPosition = prev + 0.5; // Slower scroll speed for media
-          // Reset when we've scrolled through one complete set
-          if (newPosition >= totalWidth) {
-            return 0;
-          }
-          return newPosition;
-        });
-      }, 16); // 60fps smooth animation
-    };
-
-    // Start media autoplay after a short delay
-    const timeoutId = setTimeout(() => {
-      startMediaAutoplay();
-    }, 2000); // Start 2 seconds after testimonials
-
-    return () => {
-      clearTimeout(timeoutId);
-      if (mediaAutoplayIntervalRef.current) {
-        clearInterval(mediaAutoplayIntervalRef.current);
-      }
-    };
+    // Preload all brand ticker images (t1.png to t21.png)
+    Array.from({ length: 21 }, (_, i) => i + 1).forEach((num) => {
+      const img = new Image();
+      img.src = `/images/t${num}.png`;
+    });
   }, []);
 
   // Background image carousel effect
@@ -356,7 +328,7 @@ const HomePage: React.FC = () => {
             video.muted = false;
             video.play().catch((error) => {
               console.log('Auto-play prevented:', error);
-              // If autoplay is prevented, user can manually play
+              // If autoplay is prevented by browser, user can manually play
             });
           } else {
             // Video is out of viewport, pause it
@@ -426,15 +398,13 @@ const HomePage: React.FC = () => {
          );
        });
 
-      // Auto-scrolling ticker (infinite marquee)
+      // Auto-scrolling ticker (infinite marquee) - using CSS animation for smoother performance
       if (tickerRef.current) {
         const wrapWidth = tickerRef.current.scrollWidth / 2; // two clones in DOM
-        gsap.to(tickerRef.current, {
-          x: -wrapWidth,
-          duration: 120, // Even slower speed - 6x the original duration
-          repeat: -1,
-          ease: "none",
-        });
+        // Set CSS custom property for animation
+        tickerRef.current.style.setProperty('--ticker-width', `-${wrapWidth}px`);
+        // Add animation class
+        tickerRef.current.classList.add('ticker-animate');
       }
 
        // Simple carousel autoplay
@@ -462,7 +432,7 @@ const HomePage: React.FC = () => {
   return (
     <main ref={rootRef} className="min-h-screen w-full bg-gradient-to-b from-slate-50 via-cyan-50 to-teal-50 text-slate-800">
        {/* Hero */}
-       <section id="hero" ref={(el) => { sectionsRef.current[0] = el; }} className="relative overflow-hidden">
+       <section id="hero" ref={(el) => { sectionsRef.current[0] = el; }} className="relative overflow-hidden pt-16 md:pt-20">
         {/* Background Image Carousel */}
         <div className="carousel-container">
           {/* Placeholder to maintain container height */}
@@ -501,29 +471,25 @@ const HomePage: React.FC = () => {
           <div className="overflow-hidden">
             <div className="w-full bg-white/20 backdrop-blur-sm md:py-5 py-4 overflow-hidden">
               <div className="relative flex" ref={tickerRef}>
-                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((clone) => (
-                  <div key={clone} className="flex items-center justify-center gap-16">
-                    {[
-                      { src: "https://res.cloudinary.com/dgsdtvxek/image/upload/v1747482905/assets/marquee/flqozzwd0ras0zk32zrr.png", alt: "Logo 1" },
-                      { src: "https://res.cloudinary.com/dgsdtvxek/image/upload/v1747482905/assets/marquee/pge4hbta6exzqpqffkbd.png", alt: "Logo 2" },
-                      { src: "https://res.cloudinary.com/dgsdtvxek/image/upload/v1747482905/assets/marquee/vmxifzteeql0k21wpcfu.png", alt: "Logo 3" },
-                      { src: "https://res.cloudinary.com/dgsdtvxek/image/upload/v1747482905/assets/marquee/abwa4jyinc6eqnyyn92w.png", alt: "Logo 4" },
-                      { src: "https://res.cloudinary.com/dgsdtvxek/image/upload/v1747482905/assets/marquee/qqvt06nn3lohxoaczzku.png", alt: "Logo 5" },
-                      { src: "https://res.cloudinary.com/dgsdtvxek/image/upload/v1747482905/assets/marquee/zhhtlcypjyisrojahrjt.png", alt: "Logo 6" },
-                      { src: "https://res.cloudinary.com/dgsdtvxek/image/upload/v1747482905/assets/marquee/ljoc36b1pbwdzoedold7.png", alt: "Logo 7" },
-                      { src: "https://res.cloudinary.com/dgsdtvxek/image/upload/v1747482905/assets/marquee/szdalnrnsmhcvif5czu3.png", alt: "Logo 8" }
-                    ].map((logo, i) => (
-                      <div key={`${clone}-${i}`} className="flex items-center justify-center px-4">
+                {[0, 1].map((clone) => (
+                  <div key={clone} className="flex items-center justify-center gap-8">
+                    {Array.from({ length: 21 }, (_, i) => i + 1).map((num) => (
+                      <div key={`${clone}-${num}`} className="flex items-center justify-center px-2">
                         <img 
-                          alt={logo.alt} 
-                          loading="lazy" 
+                          alt={`Brand ${num}`} 
+                          loading="eager" 
                           width="30" 
                           height="30" 
                           decoding="async" 
                           className="w-auto h-8" 
-                          src={logo.src}
+                          src={`/images/t${num}.png`}
+                          style={{ 
+                            imageRendering: 'crisp-edges',
+                            backfaceVisibility: 'hidden',
+                            transform: 'translateZ(0)' // Force GPU acceleration
+                          }}
                         />
-                        <div className="w-2 h-2 bg-white/80 rounded-full mx-8 flex-shrink-0 flex items-center justify-center"></div>
+                        <div className="w-2 h-2 bg-white/80 rounded-full mx-4 flex-shrink-0 flex items-center justify-center"></div>
                       </div>
                     ))}
                   </div>
@@ -1137,149 +1103,6 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Rich In The NEWS */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 via-cyan-50 to-teal-50 relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(20,184,166,0.1)_0%,rgba(6,182,212,0.15)_50%,rgba(20,184,166,0.1)_100%)] bg-[length:200%_200%] animate-pulse"></div>
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-teal-100/30 via-transparent to-cyan-100/30"></div>
-        
-        <div className="w-full px-6 relative z-10">
-          <div className="max-w-6xl mx-auto text-center">
-            <h3 className="text-4xl md:text-5xl font-black mb-4 bg-gradient-to-r from-teal-600 via-cyan-600 to-sky-600 bg-clip-text text-transparent">
-              Rich In The NEWS
-            </h3>
-            <p className="text-slate-600 text-lg mb-12">
-              Click any media logo to read what they said about us.
-            </p>
-            
-            {/* Media Carousel */}
-            <div className="relative overflow-x-auto overflow-y-visible md:overflow-hidden">
-              <div 
-                className="flex gap-6 md:gap-12 py-4"
-                style={{ 
-                  transform: `translateX(-${mediaScrollPosition}px)`,
-                  transition: 'none'
-                }}
-              >
-                {/* First set of media logos */}
-                {[
-                  {
-                    name: "Vanguard",
-                    url: "https://www.vanguardngr.com/2023/09/the-ultimate-guide-to-selling-gift-cards-online-in-nigeria-and-ghana/",
-                    logo: "https://imgur.com/7DlKymB.png"
-                  },
-                  {
-                    name: "Premium Times",
-                    url: "https://www.premiumtimesng.com/promoted/625843-how-to-sell-gift-cards-in-nigeria-and-ghana.html?tztc=1",
-                    logo: "https://imgur.com/tp1Djrx.png"
-                  },
-                  {
-                    name: "Punch",
-                    url: "https://punchng.com/secure-site-to-sell-gift-cards-in-nigeria/",
-                    logo: "https://imgur.com/CX3g6O8.png"
-                  }
-                ].map((media, index) => (
-                  <a 
-                    key={index}
-                    href={media.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-shrink-0 mx-3 md:mx-6 group"
-                  >
-                    <div className="relative flex items-center justify-center" style={{ minHeight: '3rem' }}>
-                      <img 
-                        alt={media.name}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-12 md:h-16 w-auto object-contain filter brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-                        src={media.logo}
-                        style={{ color: 'transparent' }}
-                      />
-                    </div>
-                  </a>
-                ))}
-
-                {/* Duplicate set for seamless loop */}
-                {[
-                  {
-                    name: "Vanguard",
-                    url: "https://www.vanguardngr.com/2023/09/the-ultimate-guide-to-selling-gift-cards-online-in-nigeria-and-ghana/",
-                    logo: "https://imgur.com/7DlKymB.png"
-                  },
-                  {
-                    name: "Premium Times",
-                    url: "https://www.premiumtimesng.com/promoted/625843-how-to-sell-gift-cards-in-nigeria-and-ghana.html?tztc=1",
-                    logo: "https://imgur.com/tp1Djrx.png"
-                  },
-                  {
-                    name: "Punch",
-                    url: "https://punchng.com/secure-site-to-sell-gift-cards-in-nigeria/",
-                    logo: "https://imgur.com/CX3g6O8.png"
-                  }
-                ].map((media, index) => (
-                  <a 
-                    key={`duplicate-${index}`}
-                    href={media.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-shrink-0 mx-3 md:mx-6 group"
-                  >
-                    <div className="relative flex items-center justify-center" style={{ minHeight: '3rem' }}>
-                      <img 
-                        alt={media.name}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-12 md:h-16 w-auto object-contain filter brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-                        src={media.logo}
-                        style={{ color: 'transparent' }}
-                      />
-                    </div>
-                  </a>
-                ))}
-
-                {/* Third set for seamless loop */}
-                {[
-                  {
-                    name: "Vanguard",
-                    url: "https://www.vanguardngr.com/2023/09/the-ultimate-guide-to-selling-gift-cards-online-in-nigeria-and-ghana/",
-                    logo: "https://imgur.com/7DlKymB.png"
-                  },
-                  {
-                    name: "Premium Times",
-                    url: "https://www.premiumtimesng.com/promoted/625843-how-to-sell-gift-cards-in-nigeria-and-ghana.html?tztc=1",
-                    logo: "https://imgur.com/tp1Djrx.png"
-                  },
-                  {
-                    name: "Punch",
-                    url: "https://punchng.com/secure-site-to-sell-gift-cards-in-nigeria/",
-                    logo: "https://imgur.com/CX3g6O8.png"
-                  }
-                ].map((media, index) => (
-                  <a 
-                    key={`third-${index}`}
-                    href={media.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-shrink-0 mx-3 md:mx-6 group"
-                  >
-                    <div className="relative flex items-center justify-center" style={{ minHeight: '3rem' }}>
-                      <img 
-                        alt={media.name}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-12 md:h-16 w-auto object-contain filter brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-                        src={media.logo}
-                        style={{ color: 'transparent' }}
-                      />
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Contact Form Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 via-cyan-50 to-teal-50">
         <div className="w-full px-6">
@@ -1347,16 +1170,16 @@ const App: React.FC = () => {
             </svg>
           </a>
 
-          {/* Telegram */}
+          {/* Facebook */}
           <a
-            href="#"
+            href="https://www.facebook.com/profile.php?id=61584869132019"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-[#0088cc] flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-200 cursor-pointer"
-            aria-label="Telegram"
+            className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-[#1877F2] flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-200 cursor-pointer"
+            aria-label="Facebook"
           >
             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" className="w-7 h-7 md:w-10 md:h-10 text-white" xmlns="http://www.w3.org/2000/svg">
-              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.559z"></path>
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
             </svg>
           </a>
 

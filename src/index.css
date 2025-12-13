@@ -88,3 +88,19 @@ h1 {
   margin: 0;
   padding: 0;
 }
+
+/* Brand ticker smooth animation */
+.ticker-animate {
+  animation: ticker-scroll 120s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0); /* Force hardware acceleration */
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(var(--ticker-width), 0, 0);
+  }
+}

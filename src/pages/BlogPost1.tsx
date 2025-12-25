@@ -225,7 +225,7 @@ const BlogPost1: React.FC = () => {
                   Join thousands of satisfied customers who trust Rich for their gift card trading needs.
                 </p>
                 <button 
-                  onClick={() => window.open('https://api.whatsapp.com/send?phone=8619972915971&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019972915971', '_blank')}
+                  onClick={() => window.open('https://api.whatsapp.com/send?phone=8618972849015&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2018972849015', '_blank')}
                   className="inline-block px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold rounded-full hover:from-cyan-600 hover:to-purple-600 transition-all duration-200 shadow-lg"
                 >
                   Start Trading Now

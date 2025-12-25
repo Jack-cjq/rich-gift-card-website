@@ -110,7 +110,7 @@ const Rewards: React.FC = () => {
                     Get started with Rich today and start unlocking the amazing benefits that await you. Happy trading!
                   </p>
                   <button 
-                    onClick={() => window.open('https://api.whatsapp.com/send?phone=8619972915971&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019972915971', '_blank')}
+                    onClick={() => window.open('https://api.whatsapp.com/send?phone=8618972849015&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2018972849015', '_blank')}
                     className="w-full py-3 bg-white text-slate-800 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
                   >
                     Trade Now

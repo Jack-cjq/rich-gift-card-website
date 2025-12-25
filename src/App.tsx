@@ -54,7 +54,7 @@ const Navigation: React.FC = () => {
       currency: 'USD',
       value: 0
     });
-    window.open('https://api.whatsapp.com/send?phone=8619972915971&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019972915971', '_blank');
+    window.open('https://api.whatsapp.com/send?phone=8618972849015&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2018972849015', '_blank');
   };
 
   // Scroll detection for navbar visibility
@@ -214,7 +214,7 @@ const HomePage: React.FC = () => {
       currency: 'USD',
       value: 0
     });
-    window.open('https://api.whatsapp.com/send?phone=8619972915971&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019972915971', '_blank');
+    window.open('https://api.whatsapp.com/send?phone=8618972849015&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2018972849015', '_blank');
   };
 
   // Testimonial continuous smooth scrolling effect
@@ -1158,7 +1158,7 @@ const App: React.FC = () => {
         <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 md:gap-4">
           {/* WhatsApp */}
           <a
-            href="https://api.whatsapp.com/send?phone=8619972915971&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2019972915971"
+            href="https://api.whatsapp.com/send?phone=8618972849015&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2018972849015"
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleWhatsAppClick}

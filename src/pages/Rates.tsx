@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CommonFooter from '../components/CommonFooter';
+import { openWhatsApp } from '../config/contact';
 
 const Rates: React.FC = () => {
   const [selectedCurrency, setSelectedCurrency] = useState('naira');
@@ -192,7 +193,7 @@ const Rates: React.FC = () => {
 
               {/* Get Started Button */}
               <button 
-                onClick={() => window.open('https://api.whatsapp.com/send?phone=8618972849015&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B86%2018972849015', '_blank')}
+                onClick={openWhatsApp}
                 className="w-full py-4 bg-cyan-500 text-white font-semibold rounded-lg hover:bg-cyan-600 transition-colors mb-4"
               >
                 Get Started

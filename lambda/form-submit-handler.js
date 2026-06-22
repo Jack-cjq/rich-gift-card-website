@@ -291,8 +291,8 @@ async function sendAdminEmail({ to, from, name, email, phone, timestamp }) {
  */
 async function sendUserConfirmationEmail({ to, from, name }) {
   // Get contact information from environment variables or use defaults
-  const whatsappNumber = process.env.WHATSAPP_NUMBER || '+86 19371138377';
-  const whatsappUrl = process.env.WHATSAPP_URL || 'https://api.whatsapp.com/send?phone=8619371138377&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21';
+  const whatsappNumber = process.env.WHATSAPP_NUMBER || '+852 9389 8414';
+  const whatsappUrl = process.env.WHATSAPP_URL || 'https://api.whatsapp.com/send?phone=85293898414&text=Hi%2C%20I%27m%20interested%20in%20trading%20gift%20cards%20on%20Rich%21%20Contact%3A%20%2B852%209389%208414';
   const tiktokUsername = process.env.TIKTOK_USERNAME || '@veryrich429';
   const tiktokUrl = process.env.TIKTOK_URL || 'https://www.tiktok.com/@veryrich429';
   

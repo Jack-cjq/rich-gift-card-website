@@ -11,46 +11,16 @@
     <!-- End Google Tag Manager -->
     <!-- Meta Pixel Code -->
     <script>
-      (function(f,b,e,v,n,t,s) {
-        try {
-          if(f.fbq)return;
-          n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-          if(!f._fbq)f._fbq=n;
-          n.push=n;
-          n.loaded=!0;
-          n.version='2.0';
-          n.queue=[];
-          t=b.createElement(e);
-          t.async=!0;
-          t.onerror=function(){
-            console.warn('Facebook Pixel script failed to load');
-          };
-          t.onload=function(){
-            clearTimeout(timeout);
-            try {
-              if(typeof f.fbq !== 'undefined') {
-                f.fbq('init', '773545299063544');
-                f.fbq('track', 'PageView');
-              }
-            } catch(err) {
-              console.warn('Facebook Pixel initialization failed:', err);
-            }
-          };
-          // Set timeout for script loading (10 seconds)
-          var timeout = setTimeout(function() {
-            if(!f.fbq || !f.fbq.loaded) {
-              console.warn('Facebook Pixel script loading timeout');
-            }
-          }, 10000);
-          t.src=v;
-          s=b.getElementsByTagName(e)[0];
-          if(s && s.parentNode) {
-            s.parentNode.insertBefore(t,s);
-          }
-        } catch(err) {
-          console.warn('Facebook Pixel setup error:', err);
-        }
-      })(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '971752082523405');
+      fbq('track', 'PageView');
     </script>
     <!-- End Meta Pixel Code -->
     <link rel="icon" type="image/png" href="/images/Rich-logo.png" />
@@ -71,7 +41,7 @@
     <!-- Meta Pixel Code (noscript) -->
     <noscript>
       <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=773545299063544&ev=PageView&noscript=1"/>
+      src="https://www.facebook.com/tr?id=971752082523405&ev=PageView&noscript=1"/>
     </noscript>
     <!-- End Meta Pixel Code (noscript) -->
     <div id="root"></div>
